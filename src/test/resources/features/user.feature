@@ -1,6 +1,7 @@
 
 Feature: User Verification
 
+  @wip @api
   Scenario: verify information about logged user
     Given I logged Bookit api as a "team-leader"
     When I sent get request to "/api/users/me" endpoint
@@ -9,6 +10,7 @@ Feature: User Verification
     And role is "student-team-leader"
 
   # API vs DB ---> Two point verification
+  @wip @db
   Scenario: verify information about logged user from api and database
     Given I logged Bookit api as a "team-member"
     When I sent get request to "/api/users/me" endpoint
