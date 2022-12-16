@@ -10,7 +10,7 @@ Feature: User Verification
 
   # API vs DB ---> Two point verification
 
-  @wip
+  @wip @db
   Scenario: verify information about logged user from api and database
     Given I logged Bookit api as a "team-leader"
     When I sent get request to "/api/users/me" endpoint

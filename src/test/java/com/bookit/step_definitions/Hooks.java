@@ -15,13 +15,13 @@ public class Hooks {
 
 	@Before("@db")
 	public void dbHook() {
-		System.out.println("creating database connection");
+		System.out.println("---> HOOKS --->creating database connection");
 		DB_Util.createConnection();
 	}
 
 	@After("@db")
 	public void afterDbHook() {
-		System.out.println("closing database connection");
+		System.out.println("---> HOOKS ---> closing database connection");
 		DB_Util.destroy();
 
 	}

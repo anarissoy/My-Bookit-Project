@@ -2,6 +2,7 @@ package com.bookit.step_definitions;
 
 import com.bookit.utilities.BookitUtils;
 import com.bookit.utilities.ConfigurationReader;
+import com.bookit.utilities.DB_Util;
 import com.bookit.utilities.Environment;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -10,6 +11,8 @@ import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.junit.Assert;
+
+import java.util.Map;
 
 import static io.restassured.RestAssured.*;
 
@@ -71,16 +74,20 @@ public class ApiStepDefs {
 }
          */
         // lastname
-        String actuallastName = jsonPath.getString("lastName");
-
+        String actualLastName = jsonPath.getString("lastName");
         // firstname
-        String actualfirstName = jsonPath.getString("firstName");
-
+        String actualFirstName = jsonPath.getString("firstName");
         // role
         String actualRole = jsonPath.getString("role");
 
         // GET DATA FROM DB
 
+        String query="select firstname,lastname,role from users where email='lfinnisz@yolasite.com'";
+
+        DB_Util.runQuery(query);
+
+        Map<String, String> dbMap = DB_Util.getRowMap(1);
+        System.out.println(dbMap);
 
         // ASSERTIONS
 
