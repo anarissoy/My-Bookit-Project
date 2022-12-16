@@ -87,9 +87,23 @@ public class ApiStepDefs {
         DB_Util.runQuery(query);
 
         Map<String, String> dbMap = DB_Util.getRowMap(1);
+
         System.out.println(dbMap);
 
+
+        String expectedFirstName = dbMap.get("firstname");
+        String expectedLastName = dbMap.get("lastname");
+        String expectedRole = dbMap.get("role");
+
         // ASSERTIONS
+
+        Assert.assertEquals(expectedFirstName,actualFirstName);
+        Assert.assertEquals(expectedLastName,actualLastName);
+        Assert.assertEquals(expectedRole,actualRole);
+
+
+
+
 
 
     }
