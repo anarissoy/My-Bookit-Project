@@ -106,6 +106,49 @@ public class ApiStepDefs {
         Assert.assertEquals(expectedLastName,actualLastName);
         Assert.assertEquals(expectedRole,actualRole);
 
+    }
+
+    @Then("UI,API and Database user information must be match")
+    public void ui_api_and_database_user_information_must_be_match() {
+
+
+        // GET DATA FROM API
+        JsonPath jsonPath = response.jsonPath();
+        /*
+        {
+            "id": 11312,
+            "firstName": "Lissie",
+            "lastName": "Finnis",
+            "role": "student-team-leader"
+}
+         */
+        // lastname
+        String actualLastName = jsonPath.getString("lastName");
+        // firstname
+        String actualFirstName = jsonPath.getString("firstName");
+        // role
+        String actualRole = jsonPath.getString("role");
+
+        // GET DATA FROM DB
+
+        String query="select firstname,lastname,role from users where email='"+emailGlobal+"'";
+
+        DB_Util.runQuery(query);
+
+        Map<String, String> dbMap = DB_Util.getRowMap(1);
+
+        System.out.println(dbMap);
+
+
+        String expectedFirstName = dbMap.get("firstname");
+        String expectedLastName = dbMap.get("lastname");
+        String expectedRole = dbMap.get("role");
+
+        // ASSERTIONS
+
+        Assert.assertEquals(expectedFirstName,actualFirstName);
+        Assert.assertEquals(expectedLastName,actualLastName);
+        Assert.assertEquals(expectedRole,actualRole);
 
 
 
