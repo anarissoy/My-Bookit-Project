@@ -7,6 +7,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.http.ContentType;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.junit.Assert;
 
@@ -59,6 +60,29 @@ public class ApiStepDefs {
     @Then("the information about current user from api and database should match")
     public void the_information_about_current_user_from_api_and_database_should_match() {
 
+       // GET DATA FROM API
+        JsonPath jsonPath = response.jsonPath();
+        /*
+        {
+            "id": 11312,
+            "firstName": "Lissie",
+            "lastName": "Finnis",
+            "role": "student-team-leader"
+}
+         */
+        // lastname
+        String actuallastName = jsonPath.getString("lastName");
+
+        // firstname
+        String actualfirstName = jsonPath.getString("firstName");
+
+        // role
+        String actualRole = jsonPath.getString("role");
+
+        // GET DATA FROM DB
+
+
+        // ASSERTIONS
 
 
     }
