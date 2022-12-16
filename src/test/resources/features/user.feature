@@ -16,7 +16,7 @@ Feature: User Verification
 
 
 # API vs DB vs UI ---> Three point verification
-  @wip @db
+  @wip @db @ui
   Scenario: three point/layer (UI,API,DATABASE)
     Given user logs in using "team-leader" credentials
     And user is on the my self page
