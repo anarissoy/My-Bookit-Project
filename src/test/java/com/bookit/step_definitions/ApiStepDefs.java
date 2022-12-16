@@ -20,11 +20,16 @@ public class ApiStepDefs {
 
     String token;
     Response response;
+    String emailGlobal;
 
     @Given("I logged Bookit api as a {string}")
     public void i_logged_bookit_api_as_a(String role) {
         token = BookitUtils.generateTokenByRole(role);
         System.out.println("token = " + token);
+
+        Map<String, String> credentials = BookitUtils.returnCredentials(role);
+        emailGlobal = credentials.get("email");
+
 
     }
     @When("I sent get request to {string} endpoint")
@@ -82,7 +87,7 @@ public class ApiStepDefs {
 
         // GET DATA FROM DB
 
-        String query="select firstname,lastname,role from users where email='lfinnisz@yolasite.com'";
+        String query="select firstname,lastname,role from users where email='"+emailGlobal+"'";
 
         DB_Util.runQuery(query);
 

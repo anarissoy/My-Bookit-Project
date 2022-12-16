@@ -12,6 +12,6 @@ Feature: User Verification
 
   @wip @db
   Scenario: verify information about logged user from api and database
-    Given I logged Bookit api as a "team-leader"
+    Given I logged Bookit api as a "team-member"
     When I sent get request to "/api/users/me" endpoint
     Then the information about current user from api and database should match
