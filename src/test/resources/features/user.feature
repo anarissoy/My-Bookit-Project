@@ -23,3 +23,6 @@ Feature: User Verification
     And I logged Bookit api as a "team-leader"
     When I sent get request to "/api/users/me" endpoint
     Then UI,API and Database user information must be match
+
+
+

@@ -1,5 +1,6 @@
 package com.bookit.step_definitions;
 
+import com.bookit.pages.SelfPage;
 import com.bookit.utilities.BookitUtils;
 import com.bookit.utilities.ConfigurationReader;
 import com.bookit.utilities.DB_Util;
@@ -144,15 +145,31 @@ public class ApiStepDefs {
         String expectedLastName = dbMap.get("lastname");
         String expectedRole = dbMap.get("role");
 
-        // ASSERTIONS
+        // API vs DB Assertion
 
         Assert.assertEquals(expectedFirstName,actualFirstName);
         Assert.assertEquals(expectedLastName,actualLastName);
         Assert.assertEquals(expectedRole,actualRole);
 
 
+        // GET DATA FROM UI
+        // There is no only firstname and lastname.It is stored as fullname
+
+        SelfPage selfPage=new SelfPage();
+        String actualNameFromUI = selfPage.name.getText();
+        String actualRoleFromUI = selfPage.role.getText();
 
 
+        // UI vs DB Assertion
+        String expectedName=expectedFirstName+" "+expectedLastName;
+
+        Assert.assertEquals(expectedName,actualNameFromUI);
+        Assert.assertEquals(expectedRole,actualRoleFromUI);
+
+        // UI vs API Assertion
+        String actualNameFromAPI=actualFirstName+" "+actualLastName;
+        Assert.assertEquals(actualNameFromAPI,actualNameFromUI);
+        Assert.assertEquals(actualRole,actualRoleFromUI);
 
     }
 
